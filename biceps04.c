@@ -88,7 +88,7 @@ static void traite_une_commande(char *commande) {
     libereAnalyse();
 }
 
-static void (char *ligne) {
+static void traite_ligne(char *ligne) {
     char *buffer;
     char *curseur;
     char *commande;

@@ -1,27 +1,17 @@
-CC = gcc
-CFLAGS = -Wall
-LDLIBS = -lreadline
-OBJ = biceps04.o gescom.o
+default : servudp_etape1 cliudp_etape1 servbeuip clibeuip
 
-all: biceps01 biceps02 biceps03 biceps04
+cliudp_etape1 : cliudp_etape1.c
+	cc -Wall -o cliudp_etape1 cliudp_etape1.c
 
-biceps01: biceps01.c
-	$(CC) $(CFLAGS) -o $@ $< $(LDLIBS)
+servudp_etape1 : servudp_etape1.c
+	cc -Wall -o servudp_etape1 servudp_etape1.c
 
-biceps02: biceps02.c
-	$(CC) $(CFLAGS) -o $@ $< $(LDLIBS)
+servbeuip: servbeuip.c
+	cc -Wall -Wextra -pedantic -o servbeuip servbeuip.c
 
-biceps03: biceps03.c
-	$(CC) $(CFLAGS) -DTRACE -o $@ $< $(LDLIBS)
+clibeuip: clibeuip.c
+	cc -Wall -Wextra -pedantic -o clibeuip clibeuip.c
 
-biceps04: $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $(OBJ) $(LDLIBS)
+clean :
+	rm -f cliudp_etape1 servudp_etape1 servbeuip clibeuip
 
-biceps04.o: biceps04.c gescom.h
-	$(CC) $(CFLAGS) -c biceps04.c
-
-gescom.o: gescom.c gescom.h
-	$(CC) $(CFLAGS) -c gescom.c
-
-clean:
-	rm -f biceps01 biceps02 biceps03 biceps04 *.o

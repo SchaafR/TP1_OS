@@ -1,17 +1,23 @@
-default : servudp_etape1 cliudp_etape1 servbeuip clibeuip
+CC = cc
+CFLAGS = -Wall -Wextra -pedantic
+LDFLAGS = -lreadline
 
-cliudp_etape1 : cliudp_etape1.c
-	cc -Wall -o cliudp_etape1 cliudp_etape1.c
+default: servudp_etape1 cliudp_etape1 servbeuip clibeuip biceps_P3
 
-servudp_etape1 : servudp_etape1.c
-	cc -Wall -o servudp_etape1 servudp_etape1.c
+cliudp_etape1: cliudp_etape1.c
+	$(CC) $(CFLAGS) -o cliudp_etape1 cliudp_etape1.c
+
+servudp_etape1: servudp_etape1.c
+	$(CC) $(CFLAGS) -o servudp_etape1 servudp_etape1.c
 
 servbeuip: servbeuip.c
-	cc -Wall -Wextra -pedantic -o servbeuip servbeuip.c
+	$(CC) $(CFLAGS) -o servbeuip servbeuip.c
 
 clibeuip: clibeuip.c
-	cc -Wall -Wextra -pedantic -o clibeuip clibeuip.c
+	$(CC) $(CFLAGS) -o clibeuip clibeuip.c
 
-clean :
-	rm -f cliudp_etape1 servudp_etape1 servbeuip clibeuip
+biceps_P3: biceps_P3.c creme.c gescom.c
+	$(CC) $(CFLAGS) -o biceps_P3 biceps_P3.c creme.c gescom.c $(LDFLAGS)
 
+clean:
+	rm -f cliudp_etape1 servudp_etape1 servbeuip clibeuip biceps_P3 *.o

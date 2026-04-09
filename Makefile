@@ -1,27 +1,23 @@
-CC = gcc
-CFLAGS = -Wall
-LDLIBS = -lreadline
-OBJ = biceps04.o gescom.o
+CC = cc
+CFLAGS = -Wall -Wextra -pedantic -pthread
+LDFLAGS = -lreadline
 
-all: biceps01 biceps02 biceps03 biceps04
+default: servudp_etape1 cliudp_etape1 servbeuip clibeuip biceps_P3
 
-biceps01: biceps01.c
-	$(CC) $(CFLAGS) -o $@ $< $(LDLIBS)
+cliudp_etape1: cliudp_etape1.c
+	$(CC) $(CFLAGS) -o cliudp_etape1 cliudp_etape1.c
 
-biceps02: biceps02.c
-	$(CC) $(CFLAGS) -o $@ $< $(LDLIBS)
+servudp_etape1: servudp_etape1.c
+	$(CC) $(CFLAGS) -o servudp_etape1 servudp_etape1.c
 
-biceps03: biceps03.c
-	$(CC) $(CFLAGS) -DTRACE -o $@ $< $(LDLIBS)
+servbeuip: servbeuip.c
+	$(CC) $(CFLAGS) -o servbeuip servbeuip.c
 
-biceps04: $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $(OBJ) $(LDLIBS)
+clibeuip: clibeuip.c
+	$(CC) $(CFLAGS) -o clibeuip clibeuip.c
 
-biceps04.o: biceps04.c gescom.h
-	$(CC) $(CFLAGS) -c biceps04.c
-
-gescom.o: gescom.c gescom.h
-	$(CC) $(CFLAGS) -c gescom.c
+biceps_P3: biceps_P3.c creme_tp3_etape1.c gescom.c
+	$(CC) $(CFLAGS) -o biceps_P3 biceps_P3.c creme_tp3_etape1.c gescom.c $(LDFLAGS)
 
 clean:
-	rm -f biceps01 biceps02 biceps03 biceps04 *.o
+	rm -f cliudp_etape1 servudp_etape1 servbeuip clibeuip biceps_P3 *.o
